@@ -8,7 +8,7 @@ programs.steam = {
 programs.gamemode.enable = true;
 
 environment.systemPackages = with pkgs; [
-   mangohud
+  unstable.mangohud
 
 ];
 

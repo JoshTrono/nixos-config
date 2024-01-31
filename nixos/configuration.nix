@@ -12,8 +12,10 @@
   imports = [
     # If you want to use modules your own flake exports (from modules/nixos):
     # outputs.nixosModules.example
-     ../pkgs/apps/steam.nix
-     ./system/kernel.nix
+    outputs.nixosModules.kernelModule
+    outputs.nixosModules.steam
+    # ../pkgs/apps/steam.nix
+    # ./system/kernel.nix
     # Or modules from other flakes (such as nixos-hardware):
     # inputs.hardware.nixosModules.common-cpu-amd
     # inputs.hardware.nixosModules.common-ssd

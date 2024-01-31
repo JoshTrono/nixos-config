@@ -14,7 +14,10 @@
   imports = [
     # If you want to use modules your own flake exports (from modules/home-manager):
     # outputs.homeManagerModules.example
-    ./apps/git/git.nix
+    outputs.homeManagerModules.git
+    outputs.homeManagerModules.go
+    #./apps/git/git.nix
+    #./apps/lang/go.nix
     # Or modules exported from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModules.default
 
@@ -65,7 +68,7 @@
  bottles
  lutris
  unstable.heroic
- jetbrains.goland
+
  ];
 
   # Enable home-manager and git

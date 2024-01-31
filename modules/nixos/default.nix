@@ -3,4 +3,6 @@
 {
   # List your module files here
   # my-module = import ./my-module.nix;
+  kernelModule = import ./kernel.nix;
+  steam = import ./steam.nix;
 }
