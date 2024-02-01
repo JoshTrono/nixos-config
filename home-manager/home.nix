@@ -16,6 +16,7 @@
     # outputs.homeManagerModules.example
     outputs.homeManagerModules.git
     outputs.homeManagerModules.go
+    outputs.homeManagerModules.dotnet
     #./apps/git/git.nix
     #./apps/lang/go.nix
     # Or modules exported from other flakes (such as nix-colors):
@@ -68,9 +69,11 @@
  bottles
  lutris
  unstable.heroic
-
+ vscode
+ direnv
  ];
-
+  services.syncthing.enable = true;
+  services.syncthing.tray.enable = true;
   # Enable home-manager and git
   programs.home-manager.enable = true;
   programs.git.enable = true;

@@ -4,4 +4,5 @@
   # List your module files here
    go = import ./go.nix;
    git = import ./git.nix;
+   dotnet = import ./dotnet.nix;
 }

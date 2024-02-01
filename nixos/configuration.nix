@@ -6,15 +6,18 @@
   lib,
   config,
   pkgs,
+  userSettings,
+  systemSettings,
   ...
 }: {
   # You can import other NixOS modules here
   imports = [
     # If you want to use modules your own flake exports (from modules/nixos):
     # outputs.nixosModules.example
-    outputs.nixosModules.kernelModule
     outputs.nixosModules.steam
+    outputs.nixosModules.nixosHardwareModule # contains all the hardware nix files
     # ../pkgs/apps/steam.nix
+    (./. + "/wm" +("/"+userSettings.wm)+"/default.nix") # so I can have multiple window managers to try hyprland without ditching kde.
     # ./system/kernel.nix
     # Or modules from other flakes (such as nixos-hardware):
     # inputs.hardware.nixosModules.common-cpu-amd
@@ -98,22 +101,17 @@
   # FIXME: Add the rest of your current configuration
 
   # TODO: Set your hostname
-  networking.hostName = "desktop";
+  networking.hostName = systemSettings.hostname;
   
-  time.timeZone = "America/New_York";
+  time.timeZone = systemSettings.timezone;
   # TODO: This is just an example, be sure to use whatever bootloader you prefer
   boot.loader.systemd-boot.enable = true;
-  services.xserver.enable = true;
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
-  
 
-  
 
   # TODO: Configure your system-wide user settings (groups, etc), add more users as needed.
   users.users = {
     # FIXME: Replace with your username
-    joshua = {
+    ${userSettings.username} = {
       # TODO: You can set an initial password for your user.
       # If you do, you can skip setting a root password by passing '--no-root-passwd' to nixos-install.
       # Be sure to change it (using passwd) after rebooting!

@@ -44,7 +44,7 @@
       system = "x86_64-linux"; # system arch
       hostname = "snowfire"; # hostname
       profile = "personal"; # select a profile defined from my profiles directory
-      timezone = "America/Chicago"; # select timezone
+      timezone = "America/New_York"; # select timezone
       locale = "en_US.UTF-8"; # select locale
     };
 
@@ -52,6 +52,7 @@
        username = "joshua";
        name = "Joshua";
        email = "Josh.trono@gmail.com";
+       wm = "kde";
 };
     # This is a function that generates an attribute by calling a function you
     # pass to it, with each system as an argument
