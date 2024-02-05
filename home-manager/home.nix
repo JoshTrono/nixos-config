@@ -70,6 +70,7 @@
  lutris
  unstable.heroic
  vscode
+ unstable.jetbrains.ruby-mine
  direnv
  ];
   services.syncthing.enable = true;
