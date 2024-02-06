@@ -7,4 +7,5 @@
   steam = import ./steam.nix;
   nixosHardwareModule = import ./hardware/default.nix;
   devtools = import ./devtools.nix;
+  virtualisation = import ./virtualisation.nix;
 }

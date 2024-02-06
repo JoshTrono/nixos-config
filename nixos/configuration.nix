@@ -15,6 +15,7 @@
     # If you want to use modules your own flake exports (from modules/nixos):
     # outputs.nixosModules.example
     outputs.nixosModules.steam
+    outputs.nixosModules.virtualisation
     outputs.nixosModules.devtools
     outputs.nixosModules.nixosHardwareModule # contains all the hardware nix files
     # ../pkgs/apps/steam.nix

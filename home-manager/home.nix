@@ -16,7 +16,7 @@
     # outputs.homeManagerModules.example
     outputs.homeManagerModules.git
     outputs.homeManagerModules.go
-    outputs.homeManagerModules.dotnet
+#    outputs.homeManagerModules.dotnet
     #./apps/git/git.nix
     #./apps/lang/go.nix
     # Or modules exported from other flakes (such as nix-colors):
@@ -63,7 +63,12 @@
   # programs.neovim.enable = true;
   home.packages = with pkgs; [
  discord
+ 
+ #Browsers
  brave
+ vivaldi
+ vivaldi-ffmpeg-codecs
+
  zoom-us
  protonup-ng
  bottles
@@ -71,6 +76,7 @@
  unstable.heroic
  vscode
  unstable.jetbrains.ruby-mine
+ unstable.jetbrains.rider
  direnv
  ];
   services.syncthing.enable = true;

@@ -8,19 +8,35 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
+  boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/effbf5c1-b417-4d1a-b97e-1c904d15e8c1";
-      fsType = "ext4";
+    { device = "/dev/disk/by-uuid/7350d0a9-f64a-4a62-890a-196c1008b51a";
+      fsType = "btrfs";
+      options = [ "subvol=@" ];
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/7169-9258";
+    { device = "/dev/disk/by-uuid/7FE1-46B4";
       fsType = "vfat";
+    };
+
+  fileSystems."/home" =
+    { device = "/dev/disk/by-uuid/8d8ffce4-3de6-4af0-9430-c7974440ade8";
+      fsType = "btrfs";
+    };
+
+  fileSystems."/home/joshua/mnt/SSD" =
+    { device = "/dev/disk/by-uuid/b4f18664-6c29-4cd3-b2e0-83f2bfd1784c";
+      fsType = "ext4";
+    };
+
+  fileSystems."/home/joshua/mnt/Games" =
+    { device = "/dev/disk/by-uuid/15ccd9b0-6561-4b89-b8f7-ec0d59574c58";
+      fsType = "ext4";
     };
 
   swapDevices = [ ];
@@ -30,8 +46,8 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlp166s0.useDHCP = lib.mkDefault true;
+  # networking.interfaces.enp3s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
