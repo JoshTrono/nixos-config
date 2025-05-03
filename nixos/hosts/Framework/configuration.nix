@@ -19,7 +19,7 @@
     ../../configs/games.nix
     ../../configs/virtualization.nix
     ../../configs/firewall.nix
-    ../../wm/plasma.nix
+    ../../wm/cinnimon.nix
   ];
 
   nixpkgs = {
