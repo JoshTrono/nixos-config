@@ -78,7 +78,7 @@ boot.loader = {
   };
 };
 
-  networking.hostName = "Desktop";
+  networking.hostName = "Framework";
 
   time.timeZone = "America/New_York";
 
