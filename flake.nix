@@ -69,7 +69,7 @@
         Framework = nixpkgs.lib.nixosSystem {
           specialArgs = { 
             inherit inputs outputs username;
-            host = "Framework"
+            host = "Framework";
              };
           modules = [
             # > Our main nixos configuration file <

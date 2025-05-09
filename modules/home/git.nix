@@ -12,13 +12,13 @@
       diff.colorMoved = "default";
       pull.ff = "only";
       color.ui = true;
-      url = {
-        "git@github.com:".insteadOf = [
-          "gh:"
-          "https://github.com/"
-        ];
-        "git@github.com:joshtrono/".insteadOf = "fp:";
-      };
+      #url = {
+      #  "git@github.com:".insteadOf = [
+      #    "gh:"
+      #    "https://github.com/"
+      #  ];
+      #  "git@github.com:joshtrono/".insteadOf = "fp:";
+      #};
       core.excludesFile = "/home/${username}/.config/git/.gitignore";
     };
 
