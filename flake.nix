@@ -67,7 +67,10 @@
           ];
         };
         Framework = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs username; };
+          specialArgs = { 
+            inherit inputs outputs username;
+            host = "Framework"
+             };
           modules = [
             # > Our main nixos configuration file <
             nixos-hardware.nixosModules.framework-12th-gen-intel
