@@ -15,11 +15,9 @@
 
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
-    ../../configs/commonPrograms.nix
-    ../../configs/games.nix
-    ../../configs/virtualization.nix
-    ../../configs/firewall.nix
-    ../../wm/cinnimon.nix
+    
+    ../../modules/core/main.nix
+    ../../modules/wm/plasma.nix
   ];
 
   nixpkgs = {
@@ -49,14 +47,7 @@
 
   nix = let flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
   in {
-    settings = {
-      # Enable flakes and new 'nix' command
-      experimental-features = "nix-command flakes";
-      # Opinionated: disable global registry
-      flake-registry = "";
-      # Workaround for https://github.com/NixOS/nix/issues/9574
-      nix-path = config.nix.nixPath;
-    };
+    
     # Opinionated: disable channels
     channel.enable = false;
 
@@ -65,25 +56,11 @@
     nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
   };
 
-boot.loader = {
-  efi = {
-    canTouchEfiVariables = true;
-    efiSysMountPoint = "/boot"; # ← use the same mount point here.
-  };
-  grub = {
-     efiSupport = true;
-     #efiInstallAsRemovable = true; # in case canTouchEfiVariables doesn't work for your system
-     device = "nodev";
-     useOSProber = true;
-  };
-};
 
-  networking.hostName = "Framework";
 
-  time.timeZone = "America/New_York";
+  networking.hostName = "Desktop";
 
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
+
 
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_US.UTF-8";
@@ -97,12 +74,7 @@ boot.loader = {
     LC_TIME = "en_US.UTF-8";
   };
 
-  programs.nh = {
-    enable = true;
-    clean.enable = true;
-    clean.extraArgs = "--keep-since 4d --keep 3";
-    flake = "/home/joshua/nixos-config";
-  };
+
 
   services.printing.enable = true;
   services.avahi = {
@@ -118,20 +90,7 @@ boot.loader = {
       # Add any missing dynamic libraries for unpackaged programs
       # here, NOT in environment.systemPackages
     ];
-  # TODO: Configure your system-wide user settings (groups, etc), add more users as needed.
-  users.users = {
-    joshua = {
-      # TODO: You can set an initial password for your user.
-      # If you do, you can skip setting a root password by passing '--no-root-passwd' to nixos-install.
-      # Be sure to change it (using passwd) after rebooting!
-      initialPassword = "correcthorsebatterystaple";
-      isNormalUser = true;
-      openssh.authorizedKeys.keys = [
-        # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
-      ];
-      extraGroups = [ "wheel" ];
-    };
-  };
+
   environment.sessionVariables = rec {
     DOTNET_ROOT = "$HOME/.dotnet";
     PATH = "$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools";
@@ -152,5 +111,5 @@ boot.loader = {
   };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  system.stateVersion = "23.05";
+  system.stateVersion = "24.11";
 }

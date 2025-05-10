@@ -4,26 +4,32 @@
   inputs = {
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+        nur = {
+          url = "github:nix-community/NUR";
+          inputs.nixpkgs.follows = "nixpkgs";
+        };
     # You can access packages and modules from different nixpkgs revs
     # at the same time. Here's an working example:
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     # Also see the 'unstable-packages' overlay at 'overlays/default.nix'.
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
+    nix-flatpak.url = "github:gmodena/nix-flatpak";
+
+    nix-gaming.url = "github:fufexan/nix-gaming";
+
     # Home manager
     home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, home-manager,nixos-hardware, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager,nixos-hardware, nur, nix-flatpak, nix-gaming, ... }@inputs:
     let
       inherit (self) outputs;
       # Supported systems for your flake packages, shell, etc.
+      username = "joshua";
       systems = [
-        "aarch64-linux"
-        "i686-linux"
         "x86_64-linux"
-        "aarch64-darwin"
-        "x86_64-darwin"
       ];
       # This is a function that generates an attribute by calling a function you
       # pass to it, with each system as an argument
@@ -51,18 +57,24 @@
       # Available through 'nixos-rebuild --flake .#your-hostname'
       nixosConfigurations = {
         Desktop = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
+          specialArgs = { 
+            inherit inputs outputs username;
+            host = "Desktop";
+             };
           modules = [
             # > Our main nixos configuration file <
-            ./nixos/hosts/Desktop/configuration.nix
+            ./hosts/Desktop/configuration.nix
           ];
         };
         Framework = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
+          specialArgs = { 
+            inherit inputs outputs username;
+            host = "Framework";
+             };
           modules = [
             # > Our main nixos configuration file <
             nixos-hardware.nixosModules.framework-12th-gen-intel
-            ./nixos/hosts/Framework/configuration.nix
+            ./hosts/Framework/configuration.nix
           ];
         };
       };
