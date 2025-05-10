@@ -58,7 +58,7 @@
 
 
 
-  networking.hostName = "Desktop";
+  networking.hostName = host;
 
 
 
