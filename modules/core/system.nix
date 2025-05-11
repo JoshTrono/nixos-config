@@ -35,7 +35,7 @@
   environment.systemPackages = with pkgs; [
     wget
     git
-    bottles
+    #bottles
   ];
   hardware.graphics = {
   enable = true;
