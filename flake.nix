@@ -15,15 +15,12 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     nix-flatpak.url = "github:gmodena/nix-flatpak";
-
-    nix-gaming.url = "github:fufexan/nix-gaming";
-
     # Home manager
     home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, home-manager,nixos-hardware, nur, nix-flatpak, nix-gaming, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager,nixos-hardware, nur, nix-flatpak, ... }@inputs:
     let
       inherit (self) outputs;
       # Supported systems for your flake packages, shell, etc.

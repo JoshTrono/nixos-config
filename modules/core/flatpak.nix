@@ -6,6 +6,8 @@
     enable = true;
     packages = [
       "com.github.tchx84.Flatseal"
+      "net.davidotek.pupgui2"
+      "com.usebottles.bottles"
       # "io.github.everestapi.Olympus"
     ];
     overrides = {
