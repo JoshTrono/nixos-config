@@ -65,12 +65,6 @@
             host = "Desktop";
              };
           modules = [
-            {
-            nix.settings = {
-              substituters = [ "https://cosmic.cachix.org/" ];
-              trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
-            };
-          }
           nixos-cosmic.nixosModules.default
             # > Our main nixos configuration file <
             ./hosts/Desktop/configuration.nix
@@ -82,12 +76,6 @@
             host = "Framework";
              };
           modules = [
-            {
-            nix.settings = {
-              substituters = [ "https://cosmic.cachix.org/" ];
-              trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
-            };
-          }
           nixos-cosmic.nixosModules.default
             # > Our main nixos configuration file <
             nixos-hardware.nixosModules.framework-12th-gen-intel

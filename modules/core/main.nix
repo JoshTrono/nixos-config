@@ -9,7 +9,7 @@
 {
   imports = [
     ./bootloader.nix
-    ./xserver.nix
+    #./xserver.nix
     ./network.nix
     ./nh.nix
     ./pipewire.nix

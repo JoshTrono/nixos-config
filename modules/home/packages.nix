@@ -91,7 +91,7 @@ in
     discord
     unstable.teamspeak6-client
     vscode
-
+    protonplus
     
     # C / C++
     gcc
