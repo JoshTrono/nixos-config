@@ -18,9 +18,15 @@
     # Home manager
     home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+
+
+    # Cosmic
+        nixpkgs.follows = "nixos-cosmic/nixpkgs-stable"; # NOTE: change "nixpkgs" to "nixpkgs-stable" to use stable NixOS release
+            nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
   };
 
-  outputs = { self, nixpkgs, home-manager,nixos-hardware, nur, nix-flatpak, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager,nixos-hardware, nur, nix-flatpak,nixos-cosmic, ... }@inputs:
     let
       inherit (self) outputs;
       # Supported systems for your flake packages, shell, etc.
@@ -59,6 +65,13 @@
             host = "Desktop";
              };
           modules = [
+            {
+            nix.settings = {
+              substituters = [ "https://cosmic.cachix.org/" ];
+              trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
+            };
+          }
+          nixos-cosmic.nixosModules.default
             # > Our main nixos configuration file <
             ./hosts/Desktop/configuration.nix
           ];
@@ -69,6 +82,13 @@
             host = "Framework";
              };
           modules = [
+            {
+            nix.settings = {
+              substituters = [ "https://cosmic.cachix.org/" ];
+              trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
+            };
+          }
+          nixos-cosmic.nixosModules.default
             # > Our main nixos configuration file <
             nixos-hardware.nixosModules.framework-12th-gen-intel
             ./hosts/Framework/configuration.nix
