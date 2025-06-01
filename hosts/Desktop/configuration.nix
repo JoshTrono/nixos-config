@@ -49,7 +49,7 @@ in
       allowUnfree = true;
     };
   };
-
+  programs.niri.enable = true;
   networking.hostName = vars.hostname;
 
   environment.sessionVariables = rec {

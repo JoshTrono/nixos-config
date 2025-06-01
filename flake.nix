@@ -3,7 +3,7 @@
 
   inputs = {
     # Nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
         nur = {
           url = "github:nix-community/NUR";
           inputs.nixpkgs.follows = "nixpkgs";
@@ -16,17 +16,12 @@
 
     nix-flatpak.url = "github:gmodena/nix-flatpak";
     # Home manager
-    home-manager.url = "github:nix-community/home-manager/release-24.11";
+    home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-
-
-    # Cosmic
-        nixpkgs.follows = "nixos-cosmic/nixpkgs-stable"; # NOTE: change "nixpkgs" to "nixpkgs-stable" to use stable NixOS release
-            nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
   };
 
-  outputs = { self, nixpkgs, home-manager,nixos-hardware, nur, nix-flatpak,nixos-cosmic, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager,nixos-hardware, nur, nix-flatpak, ... }@inputs:
     let
       inherit (self) outputs;
       # Supported systems for your flake packages, shell, etc.
@@ -65,7 +60,6 @@
             host = "Desktop";
              };
           modules = [
-          nixos-cosmic.nixosModules.default
             # > Our main nixos configuration file <
             ./hosts/Desktop/configuration.nix
           ];
@@ -76,7 +70,6 @@
             host = "Framework";
              };
           modules = [
-          nixos-cosmic.nixosModules.default
             # > Our main nixos configuration file <
             nixos-hardware.nixosModules.framework-12th-gen-intel
             ./hosts/Framework/configuration.nix

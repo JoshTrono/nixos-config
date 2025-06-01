@@ -9,7 +9,7 @@
     with pkgs;
     [
       pkgs.firefox
-      pkgs.chromium
+      # pkgs.chromium
       # pkgs.librewolf
     ]
   );

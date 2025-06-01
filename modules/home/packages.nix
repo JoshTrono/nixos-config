@@ -66,6 +66,7 @@ in
     pipes                             # terminal screensaver
     sl
     tty-clock                         # cli clock
+    fastfetch
 
     ## GUI Apps
     audacity
@@ -89,6 +90,7 @@ in
     wineWowPackages.wayland
     zenity
     discord
+    inkscape
     unstable.teamspeak6-client
     vscode
     protonplus
