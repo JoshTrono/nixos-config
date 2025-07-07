@@ -10,13 +10,14 @@
      #gamemode
      #gamescope
      #winetricks
+     (bottles.override { removeWarningPopup = true;})
     # inputs.nix-gaming.packages.${pkgs.system}.wine-ge
 
     ## Minecraft
      prismlauncher
 
     ## Cli games
-    _2048-in-terminal
+    #_2048-in-terminal
     vitetris
     nethack
 

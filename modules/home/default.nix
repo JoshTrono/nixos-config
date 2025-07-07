@@ -6,7 +6,7 @@
     ./obsidian.nix
     ./packages.nix
     ./retroarch.nix
-    ./rider.nix
+    ./dev.nix
     ./ssh.nix
     ./git.nix
     ./lazygit.nix
